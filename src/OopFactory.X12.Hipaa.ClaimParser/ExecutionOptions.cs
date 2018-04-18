@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace OopFactory.X12.Hipaa.ClaimParser
 {
@@ -40,7 +41,11 @@ namespace OopFactory.X12.Hipaa.ClaimParser
         {
             get
             {
-                return ConfigurationManager.AppSettings["LogFile"];
+                var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true).Build();
+
+                return config["LogFile"];
             }
         }
 

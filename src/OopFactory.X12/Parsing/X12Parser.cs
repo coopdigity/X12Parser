@@ -296,7 +296,7 @@ namespace OopFactory.X12.Parsing
         public string TransformToX12(string xml)
         {
             var transform = new XslCompiledTransform();
-            transform.Load(XmlReader.Create(Assembly.GetExecutingAssembly().GetManifestResourceStream("OopFactory.X12.Transformations.X12-XML-to-X12.xslt")));
+            transform.Load(XmlReader.Create(typeof(OopFactory.X12.Parsing.X12Parser).GetTypeInfo().Assembly.GetManifestResourceStream("OopFactory.X12.Transformations.X12-XML-to-X12.xslt")));
 
             using (var writer = new StringWriter())
             {

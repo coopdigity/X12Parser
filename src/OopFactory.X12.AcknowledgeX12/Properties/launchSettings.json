@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "X12.AcknowledgeX12": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\jeremiah\\Desktop\\Temp\\x12 edi\\324-20180411180619-165fe461.edi\" \".\\ack.txt\" 000007037 7037"
+    }
+  }
+}

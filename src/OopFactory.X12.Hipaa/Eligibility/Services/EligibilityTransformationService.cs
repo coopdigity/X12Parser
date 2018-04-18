@@ -22,7 +22,7 @@ namespace OopFactory.X12.Hipaa.Eligibility.Services
             {
                 var xml = interchange.Serialize();
 
-                var transformStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OopFactory.X12.Hipaa.Eligibility.Services.Xsl.X12-271-To-BenefitResponse.xslt");
+                var transformStream = typeof(OopFactory.X12.Parsing.X12Parser).GetTypeInfo().Assembly.GetManifestResourceStream("OopFactory.X12.Hipaa.Eligibility.Services.Xsl.X12-271-To-BenefitResponse.xslt");
 
                 var transform = new XslCompiledTransform();
                 if (transformStream != null) transform.Load(XmlReader.Create(transformStream));
@@ -44,7 +44,7 @@ namespace OopFactory.X12.Hipaa.Eligibility.Services
         {
             string xml = response.Serialize();
 
-            var transformStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OopFactory.X12.Hipaa.Eligibility.Services.Xsl.BenefitResponse-To-Html.xslt");
+            var transformStream = typeof(OopFactory.X12.Parsing.X12Parser).GetTypeInfo().Assembly.GetManifestResourceStream("OopFactory.X12.Hipaa.Eligibility.Services.Xsl.BenefitResponse-To-Html.xslt");
 
             var transform = new XslCompiledTransform();
             if (transformStream != null) transform.Load(XmlReader.Create(transformStream));

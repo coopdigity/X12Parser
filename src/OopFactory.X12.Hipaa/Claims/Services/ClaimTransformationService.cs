@@ -76,7 +76,7 @@ namespace OopFactory.X12.Hipaa.Claims.Services
         {
             var xml = interchange.Serialize();
 
-            var transformStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OopFactory.X12.Hipaa.Claims.Services.Xsl.X12-837-To-ClaimDocument.xslt");
+            var transformStream = typeof(OopFactory.X12.Parsing.X12Parser).GetTypeInfo().Assembly.GetManifestResourceStream("OopFactory.X12.Hipaa.Claims.Services.Xsl.X12-837-To-ClaimDocument.xslt");
 
             var transform = new XslCompiledTransform();
             if (transformStream != null) transform.Load(XmlReader.Create(transformStream));

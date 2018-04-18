@@ -56,7 +56,9 @@ namespace OopFactory.X12.Validation
                             SenderId = isaElements[6],
                             FunctionalIdCode = functionalIdentifierCode,
                             GroupControlNumber = groupControlNumber,
-                            VersionIdentifierCode = versionIdentifierCode
+                            VersionIdentifierCode = versionIdentifierCode,
+                            ApplicationReceiversCode = gsElements[2],
+                            ApplicationSendersCode = gsElements[3]
                         });
                     }
                     var groupResponse = responses[groupControlNumber];

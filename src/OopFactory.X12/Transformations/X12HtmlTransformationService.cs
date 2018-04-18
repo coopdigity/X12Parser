@@ -26,7 +26,7 @@ namespace OopFactory.X12.Transformations
             if (_transform == null)
             {
                 _transform = new XslCompiledTransform();
-                _transform.Load(XmlReader.Create(Assembly.GetExecutingAssembly().GetManifestResourceStream("OopFactory.X12.Transformations.X12-XML-to-HTML.xslt")));
+                _transform.Load(XmlReader.Create(typeof(OopFactory.X12.Parsing.X12Parser).GetTypeInfo().Assembly.GetManifestResourceStream("OopFactory.X12.Transformations.X12-XML-to-HTML.xslt")));
             }
             return _transform;
         }

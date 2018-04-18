@@ -7,27 +7,32 @@ using OopFactory.X12.Parsing;
 using OopFactory.X12.Repositories;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
+
 namespace OopFactory.X12.ImportX12
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string dsn = ConfigurationManager.ConnectionStrings["X12"].ConnectionString;
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true).Build();
+            string dsn = config["connectionString"];
             
-            bool throwExceptionOnSyntaxErrors = ConfigurationManager.AppSettings["ThrowExceptionOnSyntaxErrors"] == "true";
-            string[] segments = ConfigurationManager.AppSettings["IndexedSegments"].Split(',');
-            string parseDirectory = ConfigurationManager.AppSettings["ParseDirectory"];
-            string parseSearchPattern = ConfigurationManager.AppSettings["ParseSearchPattern"];
-            string archiveDirectory = ConfigurationManager.AppSettings["ArchiveDirectory"];
-            string failureDirectory = ConfigurationManager.AppSettings["FailureDirectory"];
-            string sqlDateType = ConfigurationManager.AppSettings["SqlDateType"];
-            int segmentBatchSize = Convert.ToInt32(ConfigurationManager.AppSettings["SqlSegmentBatchSize"]);
+            bool throwExceptionOnSyntaxErrors = config["ThrowExceptionOnSyntaxErrors"] == "true";
+            string[] segments = config["IndexedSegments"].Split(',');
+            string parseDirectory = config["ParseDirectory"];
+            string parseSearchPattern = config["ParseSearchPattern"];
+            string archiveDirectory = config["ArchiveDirectory"];
+            string failureDirectory = config["FailureDirectory"];
+            string sqlDateType = config["SqlDateType"];
+            int segmentBatchSize = Convert.ToInt32(config["SqlSegmentBatchSize"]);
 
             var specFinder = new SpecificationFinder();
             var parser = new X12Parser(throwExceptionOnSyntaxErrors);
             parser.ParserWarning += new X12Parser.X12ParserWarningEventHandler(parser_ParserWarning);
-            var repo = new SqlTransactionRepository<int>(dsn, specFinder, segments, ConfigurationManager.AppSettings["schema"], ConfigurationManager.AppSettings["containerSchema"], segmentBatchSize, sqlDateType);
+            var repo = new SqlTransactionRepository<int>(dsn, specFinder, segments, config["schema"], config["containerSchema"], segmentBatchSize, sqlDateType);
 
             foreach (var filename in Directory.GetFiles(parseDirectory, parseSearchPattern, SearchOption.AllDirectories))
             {

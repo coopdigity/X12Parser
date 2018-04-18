@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>OopFactory.X12.Hipaa</RootNamespace>
+    <Description>Open Source .NET CORE C# X12 Parser</Description>
+    <Copyright>Copyright © Dannie Strubhar 2011</Copyright>
+    <Product>OopFactory.X12.Hipaa</Product>
+    <Company>Dannie Strubhar</Company>
+    <Authors>Dannie Strubhar</Authors>
+    <AssemblyVersion>3.1.10.0</AssemblyVersion>
+    <PackageReleaseNotes>This was ported from the .Net Framework 4 version 3.0.10.0 (authored by Dannie Strubhar) by Jeremiah Cooper of CoopDIGITy, Inc.</PackageReleaseNotes>
+    <FileVersion>3.1.10.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\X12\X12.csproj" />
+  </ItemGroup>
+
+</Project>

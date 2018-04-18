@@ -7,6 +7,7 @@ using System.Xml;
 using System.Configuration;
 using OopFactory.X12.Parsing;
 using OopFactory.X12.Hipaa.Claims.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace OopFactory.X12.Hipaa.ClaimParser
 {
@@ -14,7 +15,11 @@ namespace OopFactory.X12.Hipaa.ClaimParser
     {
         static void Main(string[] args)
         {
-            bool throwException = Convert.ToBoolean(ConfigurationManager.AppSettings["ThrowExceptionOnSyntaxErrors"]);
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true).Build();
+
+            bool throwException = Convert.ToBoolean(config["ThrowExceptionOnSyntaxErrors"]);
 
             var opts = new ExecutionOptions(args);
             InstitutionalClaimToUB04ClaimFormTransformation institutionalClaimToUB04ClaimFormTransformation = new InstitutionalClaimToUB04ClaimFormTransformation("UB04_Red.gif");
@@ -64,8 +69,7 @@ namespace OopFactory.X12.Hipaa.ClaimParser
                             string foXml = service.TransformClaimDocumentToFoXml(claimDoc);
                             foDoc.LoadXml(foXml);
 
-                            var driver = Fonet.FonetDriver.Make();
-                            driver.Render(foDoc, pdfOutput);
+                            //var driver = Fonet.FonetDriver.Make().Render(foDoc, pdfOutput); // Fonet is not dotnetcore
                             pdfOutput.Close();
                         }
                     }

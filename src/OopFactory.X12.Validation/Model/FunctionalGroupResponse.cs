@@ -21,6 +21,8 @@ namespace OopFactory.X12.Validation.Model
         public string FunctionalIdCode { get; set; }
         public string GroupControlNumber { get; set; }
         public string VersionIdentifierCode { get; set; }
+        public string ApplicationSendersCode { get; set; }
+        public string ApplicationReceiversCode { get; set; }
 
         public List<TransactionSetResponse> TransactionSetResponses { get; set; }
 

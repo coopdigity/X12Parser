@@ -61,7 +61,7 @@ namespace OopFactory.X12.Hipaa.Claims.Services
 
             var xml = form.Serialize();
 
-            var transformStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OopFactory.X12.Hipaa.Claims.Services.Xsl.FormDocument-To-FoXml.xslt");
+            var transformStream = typeof(OopFactory.X12.Parsing.X12Parser).GetTypeInfo().Assembly.GetManifestResourceStream("OopFactory.X12.Hipaa.Claims.Services.Xsl.FormDocument-To-FoXml.xslt");
 
             var transform = new XslCompiledTransform();
             if (transformStream != null) transform.Load(XmlReader.Create(transformStream));
