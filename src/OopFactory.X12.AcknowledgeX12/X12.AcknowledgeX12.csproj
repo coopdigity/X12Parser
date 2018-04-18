@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\X12.Validation\X12.Validation.csproj" />
-    <ProjectReference Include="..\X12\X12.csproj" />
+    <ProjectReference Include="..\OopFactory.X12.Validation\X12.Validation.csproj" />
+    <ProjectReference Include="..\OopFactory.X12\X12.csproj" />
   </ItemGroup>
 
 </Project>

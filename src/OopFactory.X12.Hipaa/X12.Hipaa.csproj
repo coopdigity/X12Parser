@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\X12\X12.csproj" />
+    <ProjectReference Include="..\OopFactory.X12\X12.csproj" />
   </ItemGroup>
 
 </Project>
